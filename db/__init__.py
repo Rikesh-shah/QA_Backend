@@ -3,7 +3,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from pymongo.server_api import ServerApi
 from core.config import settings
 
-mongodb_url = f"mongodb+srv://{settings.DB_USER}:{settings.DB_PASSWORD}@{settings.DB_HOST}/?retryWrites=true&w=majority"
+mongodb_url = f"mongodb+srv://{settings.DB_USER}:{settings.DB_PASSWORD}@{settings.DB_HOST}/?retryWrites=true&w=majority&appName=Cluster0"
 client = AsyncIOMotorClient(mongodb_url, server_api=ServerApi('1'))
 
 
