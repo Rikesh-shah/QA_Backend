@@ -1,4 +1,5 @@
-from fastapi import FastAPI
+from fastapi import FastAPI,requests
+from fastapi.responses import RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
 from userdir.routes import UserRoutes
 from db import ping_server
@@ -13,10 +14,7 @@ async def on_start():
 
 
 allowed_origins = [
-    "http://31.44.2.38",
-    "https://31.44.2.38",
-    "http://31.44.2.38:8002",
-    "http://localhost:5173"
+    "https://qa-backend.vercel.app/"
 ]
 
 app.add_middleware(
@@ -30,3 +28,7 @@ usr_router = UserRoutes()
 usr_router.setup_routes()
 
 app.include_router(usr_router.router)
+
+@app.get("/")
+def redirect_page():
+    return RedirectResponse(url = "https://qa-backend.vercel.app/docs/")
